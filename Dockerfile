@@ -1,12 +1,8 @@
-FROM 
+FROM openjdk:17-jdk
 
-COPY . .
+WORKDIR /app
 
-ENV MONGO_DATABASE="" \
-    MONGO_USER="" \
-    MONGO_PASSWORD="" \
-    MONGO_CLUSTER=""
-    
+COPY target/movieist-0.0.1-SNAPSHOT.jar /app/movieist-0.0.1-SNAPSHOT.jar
+
 EXPOSE 8082
-WORKDIR /target
-ENTRYPOINT ["java","-jar","./movieist-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-jar","movieist-0.0.1-SNAPSHOT.jar"]
