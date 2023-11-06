@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_USERNAME = "adesinna"
-        APP_NAME = "movies-blog-frontend"
+        APP_NAME = "movies-blog-backend"
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKERHUB_USERNAME}/${APP_NAME}"
         REGISTRY_CREDS = 'dockerhub'
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Checkout SCM') {
             steps {
-                git credentialsId: 'github', url: 'https://github.com/adesinna/movie-blog-frontend.git', branch: 'main'
+                git credentialsId: 'github', url: 'https://github.com/adesinna/movie-blog-backend.git', branch: 'main'
             }
         }
 
