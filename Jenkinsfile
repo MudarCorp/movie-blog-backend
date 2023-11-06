@@ -57,10 +57,10 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+       stage('Build Image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
+                    docker_image = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
                 }
             }
         }
@@ -76,11 +76,12 @@ pipeline {
             }
         }
 
-        stage('Remove Images') {
-            steps {
+        stage('Remove Images'){
+            steps{
                 sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
                 sh "docker rmi ${IMAGE_NAME}:latest"
             }
         }
+
     }
 }
