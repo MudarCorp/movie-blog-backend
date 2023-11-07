@@ -26,12 +26,6 @@ pipeline {
             steps {
                 sh 'mvn clean install -DskipTests'
             }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war', allowEmptyArchive: true
-                }
-            }
         }
 
         stage('UNIT TEST') {
@@ -57,7 +51,7 @@ pipeline {
             }
         }
 
-       stage('Build Image') {
+        stage('Build Image') {
             steps {
                 script {
                     docker_image = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
